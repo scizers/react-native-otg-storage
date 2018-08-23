@@ -39,8 +39,30 @@ compile 'com.github.mjdev:libaums:0.5.5'
 ## Usage
 ```javascript
 import RNOtgStorage from 'react-native-otg-storage';
+import {DeviceEventEmitter} from 'react-native';
 
-RNOtgStorage;
+
+	constructor(props) {
+		super(props);
+		DeviceEventEmitter.addListener('onOTGConnected', (event) => {
+			console.log(event, 'onOTGConnected');
+		});
+
+		DeviceEventEmitter.addListener('onOTGDisconnected', (event) => {
+			console.log(event, 'onOTGDisconnected');
+		});
+
+
+		DeviceEventEmitter.addListener('logger', (event) => {
+			console.log(event);
+		});
+
+
+		DeviceEventEmitter.addListener('newDeviceConnected', (event) => {
+			console.log(event);
+		});
+	}
+
 
 	connectDevice() {
 
