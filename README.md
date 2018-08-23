@@ -12,13 +12,6 @@
 ### Manual installation
 
 
-#### iOS
-
-1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-otg-storage` and add `RNOtgStorage.xcodeproj`
-3. In XCode, in the project navigator, select your project. Add `libRNOtgStorage.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
-
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainActivity.java`
@@ -34,20 +27,53 @@
       compile project(':react-native-otg-storage')
   	```
 
-#### Windows
-[Read it! :D](https://github.com/ReactWindows/react-native)
 
-1. In Visual Studio add the `RNOtgStorage.sln` in `node_modules/react-native-otg-storage/windows/RNOtgStorage.sln` folder to their solution, reference from their app.
-2. Open up your `MainPage.cs` app
-  - Add `using Otg.Storage.RNOtgStorage;` to the usings at the top of the file
-  - Add `new RNOtgStoragePackage()` to the `List<IReactPackage>` returned by the `Packages` method
+#### Important 
+The library can be included into your project like this:
+
+```ruby
+compile 'com.github.mjdev:libaums:0.5.5'
+```
 
 
 ## Usage
 ```javascript
 import RNOtgStorage from 'react-native-otg-storage';
 
-// TODO: What to do with the module?
 RNOtgStorage;
+
+	connectDevice() {
+
+		RNOtgStorage.connectDevice().then((d)=> {
+			console.log(d)
+		});
+
+	}
+
+	openDevice() {
+
+		RNOtgStorage.openDevice().then((d)=> {
+
+			RNOtgStorage.openRootFolder("foo", function (data) {
+				console.log(data);
+
+				RNOtgStorage.openRootFolderFile("foo", "bar.txt", function (x) {
+
+					console.log(x);
+
+					RNOtgStorage.udpateOrCreateRootFolderFile("foo", "barsdf.txt", "sadf asdf jasdfk asf" , function (r) {
+						console.log(r);
+					})
+
+
+				})
+
+			})
+
+		});
+
+	}
+
+
 ```
   
