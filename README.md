@@ -3,7 +3,8 @@
 
 ## Getting started
 
-`$ npm install react-native-otg-storage --save
+
+`
 $ npm install scizers/react-native-otg-storage#master
 `
 
