@@ -221,16 +221,19 @@ public class RNOtgStorageModule extends ReactContextBaseJavaModule {
 
         if (mDetectedDevices.size() > 0) {
             String deviceName;
+            String serialNumber;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 deviceName = (mDetectedDevices.get(0).getProductName());
+                 serialNumber = (mDetectedDevices.get(0).getSerialNumber());
             } else {
                 deviceName = (mDetectedDevices.get(0).getDeviceName());
+                   serialNumber = (mDetectedDevices.get(0).getSerialNumber());
             }
 
             WritableMap map = Arguments.createMap();
             map.putString("type", "success");
             map.putString("deviceName", deviceName);
-
+              map.putString("serialNumber", serialNumber);
             UsbMassStorageDevice[] devices = UsbMassStorageDevice.getMassStorageDevices(this.reactContext);
             mUsbManager.requestPermission(mDetectedDevices.get(0), mPermissionIntent);
 
